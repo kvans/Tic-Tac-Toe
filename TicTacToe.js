@@ -30,16 +30,16 @@ $('table tr td .dot').click(function(x){
 	//console.log($("tr td").index());
 	//console.log($(this));
 	//console.log($(this).parent().index())
+	var dotIndex = $(this).parent().index();
+	var rowIndex = $(this).parent().parent().index();
 	if ($(this).parent().parent().index() == 0){
-		$(this).css('background-color','#B22222');
 		for (var i = $('table tr').last().index();  i >= 0; i--) {
-				var row = $('table tr')[i];
-				console.log(row.getElementsByTagName('td .dot').parent()[$(this).parent().index()])
-				if (row.getElementsByTagName('td')[$(this).parent().index()].style.backgroundcolor != 'red'){
-					row.getElementsByTagName('td.dot')[$(this).parent().index()]
-					break;
+				var rows = $('table tr')[i];
+				if($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)"){
+					$($(rows).children()[dotIndex]).children().css('background-color','#B22222');
+					break
 				}
-			}
+		}
 	}
 	//console.log($("table").find("tr").last()[0]);
 	//console.log($(x).index());
