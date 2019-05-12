@@ -21,31 +21,40 @@ function myFunction(x) {
 
 */
 
+//What is left to do
+//	Program Players -> Work on this
+//	Program winning logic
 
 
-
-
-
-$('table tr td .dot').click(function(x){
-	//console.log($("tr td").index());
-	//console.log($(this));
-	//console.log($(this).parent().index())
-	var dotIndex = $(this).parent().index();
-	var rowIndex = $(this).parent().parent().index();
-	if ($(this).parent().parent().index() == 0){
-		for (var i = $('table tr').last().index();  i >= 0; i--) {
-				var rows = $('table tr')[i];
-				if($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)"){
-					$($(rows).children()[dotIndex]).children().css('background-color','#B22222');
-					break
-				}
+var player1 = 'red';
+var player2 = 'blue';
+var gamestarted = false;
+//Allows player to click on top row dot and pushes the dot down =) 
+$('#start').click(function(){
+	gamestarted=true;
+	console.log(gamestarted)
+if(gamestarted==true){
+	console.log('clicked')
+	$('table tr td .dot').click(function(x){
+		//console.log($("tr td").index());
+		//console.log($(this));
+		//console.log($(this).parent().index())
+		var dotIndex = $(this).parent().index();
+		var rowIndex = $(this).parent().parent().index();
+		if ($(this).parent().parent().index() == 0){
+			for (var i = $('table tr').last().index();  i >= 0; i--) {
+					var rows = $('table tr')[i];
+					if($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)"){
+						$($(rows).children()[dotIndex]).children().css('background-color','#B22222');
+						break
+					}
+			}
 		}
-	}
-	//console.log($("table").find("tr").last()[0]);
-	//console.log($(x).index());
+		//console.log($("table").find("tr").last()[0]);
+		//console.log($(x).index());
+	})
+}
 })
-
-
 /*
 $('table tr').click(function() {
 
