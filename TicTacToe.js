@@ -22,14 +22,20 @@ function myFunction(x) {
 */
 
 //What is left to do
-//	Program Players -> Work on this
-//	Program winning logic
+//	Program Players -> Done
+//	Program winning logic -> working on tihs
+//		Make 7 by 7 array -> Done
+//		Push button click index to array -.Done
+//		Check if there are 4 in a row;
 
-
-var player1 = 0;
-var player2 = 1;
-var whosTurn = 0;
+var player1 = 1;
+var player2 = 2;
+var whosTurn = 1;
 var gamestarted = false;
+
+var arr = Create2DArray(7);
+
+
 //Allows player to click on top row dot and pushes the dot down =) 
 $('#start').click(function(){
 	gamestarted=true;
@@ -47,32 +53,35 @@ if(gamestarted==true){
 		if ($(this).parent().parent().index() == 0){
 			for (var i = $('table tr').last().index();  i >= 0; i--) {
 					var rows = $('table tr')[i];
-					if($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)" && whosTurn ==0){
+					if($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)" && whosTurn ==1){
 						$($(rows).children()[dotIndex]).children().css('background-color','#B22222');
-						whosTurn = 1;
+						arr[dotIndex][i] = whosTurn;
+						whosTurn = 2;
 						break
 					}
-					else if ($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)" && whosTurn ==1) {
+					else if ($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)" && whosTurn ==2) {
 						$($(rows).children()[dotIndex]).children().css('background-color','#8FBC8F');
-						whosTurn = 0;
+						arr[dotIndex][i] = whosTurn;
+						whosTurn = 1;
 						break
 					}
 			}
 		}
 		//console.log($("table").find("tr").last()[0]);
 		//console.log($(x).index());
-		var ary = [];
-	$('tr').each(function() {
-    date = $('td:first', this).css("background-color");
-    $('td:gt(0)', this).each(function() {
-        ary.push([date, $(this).css("background-color")]);
-    });
-});
-console.log(ary);
+	console.log(arr)
 	})
 }
 })
+function Create2DArray(rows) {
+  var arr = [];
 
+  for (var i=0;i<rows;i++) {
+     arr[i] = [];
+  }
+
+  return arr;
+}
 /*
 $('table tr').click(function() {
 
