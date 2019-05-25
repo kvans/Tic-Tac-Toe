@@ -26,13 +26,16 @@ function myFunction(x) {
 //	Program winning logic
 
 
-var player1 = 'red';
-var player2 = 'blue';
+var player1 = 0;
+var player2 = 1;
+var whosTurn = 0;
 var gamestarted = false;
 //Allows player to click on top row dot and pushes the dot down =) 
 $('#start').click(function(){
 	gamestarted=true;
 	console.log(gamestarted)
+	$(this).hide();
+
 if(gamestarted==true){
 	console.log('clicked')
 	$('table tr td .dot').click(function(x){
@@ -44,17 +47,32 @@ if(gamestarted==true){
 		if ($(this).parent().parent().index() == 0){
 			for (var i = $('table tr').last().index();  i >= 0; i--) {
 					var rows = $('table tr')[i];
-					if($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)"){
+					if($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)" && whosTurn ==0){
 						$($(rows).children()[dotIndex]).children().css('background-color','#B22222');
+						whosTurn = 1;
+						break
+					}
+					else if ($($(rows).children()[dotIndex]).children().css("background-color") == "rgb(187, 187, 187)" && whosTurn ==1) {
+						$($(rows).children()[dotIndex]).children().css('background-color','#8FBC8F');
+						whosTurn = 0;
 						break
 					}
 			}
 		}
 		//console.log($("table").find("tr").last()[0]);
 		//console.log($(x).index());
+		var ary = [];
+	$('tr').each(function() {
+    date = $('td:first', this).css("background-color");
+    $('td:gt(0)', this).each(function() {
+        ary.push([date, $(this).css("background-color")]);
+    });
+});
+console.log(ary);
 	})
 }
 })
+
 /*
 $('table tr').click(function() {
 
